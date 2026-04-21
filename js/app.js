@@ -51,6 +51,10 @@ const App = {
       setTimeout(() => { submitBtn.disabled = false; }, 5000);
     });
 
+    document.getElementById('game-start-link').addEventListener('click', () => {
+      App.showScreen('screen-mode-select');
+    });
+
     document.getElementById('admin-link').addEventListener('click', () => {
       App.showScreen('screen-admin-login');
     });
@@ -65,9 +69,6 @@ const App = {
     });
 
     // 관리자 대시보드
-    document.getElementById('start-game-btn').addEventListener('click', () => {
-      App.showScreen('screen-mode-select');
-    });
     document.getElementById('admin-logout').addEventListener('click', () => {
       App.adminPassword = null;
       App.showScreen('screen-submit');
@@ -80,9 +81,8 @@ const App = {
         App.startDraw();
       });
     });
-    document.getElementById('back-to-dash').addEventListener('click', () => {
-      Admin.loadDashboard();
-      App.showScreen('screen-admin-dash');
+    document.getElementById('back-to-home').addEventListener('click', () => {
+      App.showScreen('screen-submit');
     });
 
     // 공개 화면

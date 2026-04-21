@@ -70,7 +70,7 @@ const Shake = {
 
     let res;
     try {
-      res = await Api.drawQuestion(App.adminPassword);
+      res = await Api.drawQuestion();
     } catch {
       const hint = document.querySelector('.shake-hint');
       if (hint) hint.textContent = 'NETWORK ERROR — TRY AGAIN';

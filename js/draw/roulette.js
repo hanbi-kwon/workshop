@@ -82,7 +82,7 @@ const Roulette = {
 
     let res;
     try {
-      res = await Api.drawQuestion(App.adminPassword);
+      res = await Api.drawQuestion();
     } catch {
       label.textContent = 'NETWORK ERROR — TRY AGAIN';
       btn.disabled = false;

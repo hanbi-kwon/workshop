@@ -4,7 +4,7 @@ const Card = {
     // 질문 수를 먼저 파악해서 카드 개수 결정
     let remaining = 5; // fallback
     try {
-      const questionsRes = await Api.getQuestions(App.adminPassword);
+      const questionsRes = await Api.getQuestions();
       if (questionsRes.ok) {
         remaining = questionsRes.questions.filter(q => !q.drawn).length;
       }
@@ -47,7 +47,7 @@ const Card = {
 
     let res;
     try {
-      res = await Api.drawQuestion(App.adminPassword);
+      res = await Api.drawQuestion();
     } catch {
       document.querySelectorAll('.flip-card').forEach(c => c.classList.remove('disabled'));
       const screen = document.querySelector('.card-screen');

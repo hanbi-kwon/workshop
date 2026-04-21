@@ -34,13 +34,12 @@ function doPost(e) {
     const { action, password } = data;
 
     if (action === 'submitQuestion') return submitQuestion(data);
+    if (action === 'drawQuestion')   return drawQuestion();
+    if (action === 'getQuestions')   return getQuestions();
 
     if (!checkAdmin(password)) return respond({ ok: false, error: 'ACCESS DENIED' });
-
-    if (action === 'getQuestions')   return getQuestions();
     if (action === 'deleteQuestion') return deleteQuestion(data);
     if (action === 'updateQuestion') return updateQuestion(data);
-    if (action === 'drawQuestion')   return drawQuestion();
 
     return respond({ ok: false, error: 'Unknown action' });
   } catch (err) {

@@ -24,7 +24,7 @@ const Api = {
   updateQuestion(password, id, text) {
     return apiCall({ action: 'updateQuestion', password, id, text });
   },
-  drawQuestion(password) {
-    return apiCall({ action: 'drawQuestion', password });
+  drawQuestion() {
+    return apiCall({ action: 'drawQuestion' });
   }
 };

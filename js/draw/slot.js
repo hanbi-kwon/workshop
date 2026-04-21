@@ -32,7 +32,7 @@ const Slot = {
     // 뽑기 API 호출
     let res;
     try {
-      res = await Api.drawQuestion(App.adminPassword);
+      res = await Api.drawQuestion();
     } catch {
       btn.disabled = false;
       const screen = document.querySelector('.slot-screen');
