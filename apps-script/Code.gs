@@ -90,34 +90,47 @@ function getQuestions() {
 // ── 질문 삭제 (관리자) ───────────────────────────────
 function deleteQuestion(data) {
   const { id } = data;
-  const sheet = getSheet();
-  const rows = sheet.getDataRange().getValues();
+  if (!id) return respond({ ok: false, error: 'Missing id' });
 
-  for (let i = 1; i < rows.length; i++) {
-    if (rows[i][0] === id) {
-      sheet.deleteRow(i + 1);
-      return respond({ ok: true });
+  const lock = LockService.getScriptLock();
+  lock.waitLock(5000);
+  try {
+    const sheet = getSheet();
+    const rows = sheet.getDataRange().getValues();
+    for (let i = 1; i < rows.length; i++) {
+      if (rows[i][0] === id) {
+        sheet.deleteRow(i + 1);
+        return respond({ ok: true });
+      }
     }
+    return respond({ ok: false, error: 'Not found' });
+  } finally {
+    lock.releaseLock();
   }
-  return respond({ ok: false, error: 'Not found' });
 }
 
 // ── 질문 수정 (관리자) ───────────────────────────────
 function updateQuestion(data) {
   const { id, text } = data;
+  if (!id) return respond({ ok: false, error: 'Missing id' });
   const trimmed = (text || '').trim();
   if (!trimmed || trimmed.length > 200) return respond({ ok: false, error: 'Invalid text' });
 
-  const sheet = getSheet();
-  const rows = sheet.getDataRange().getValues();
-
-  for (let i = 1; i < rows.length; i++) {
-    if (rows[i][0] === id) {
-      sheet.getRange(i + 1, 2).setValue(trimmed);
-      return respond({ ok: true });
+  const lock = LockService.getScriptLock();
+  lock.waitLock(5000);
+  try {
+    const sheet = getSheet();
+    const rows = sheet.getDataRange().getValues();
+    for (let i = 1; i < rows.length; i++) {
+      if (rows[i][0] === id) {
+        sheet.getRange(i + 1, 2).setValue(trimmed);
+        return respond({ ok: true });
+      }
     }
+    return respond({ ok: false, error: 'Not found' });
+  } finally {
+    lock.releaseLock();
   }
-  return respond({ ok: false, error: 'Not found' });
 }
 
 // ── 질문 뽑기 (관리자) ──────────────────────────────
