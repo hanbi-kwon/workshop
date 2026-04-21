@@ -7,6 +7,7 @@ async function apiCall(payload) {
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(payload)
   });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 

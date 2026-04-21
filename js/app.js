@@ -11,6 +11,7 @@ const App = {
       s.classList.add('hidden');
     });
     const target = document.getElementById(id);
+    if (!target) { console.error('showScreen: no element with id', id); return; }
     target.classList.remove('hidden');
     target.classList.add('active');
   },

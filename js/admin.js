@@ -9,8 +9,16 @@ const Admin = {
 
     if (!pw) return;
 
-    const res = await Api.getQuestions(pw);
+    let res;
+    try {
+      res = await Api.getQuestions(pw);
+    } catch {
+      errEl.textContent = 'NETWORK ERROR';
+      errEl.classList.remove('hidden');
+      return;
+    }
     if (!res.ok) {
+      errEl.textContent = 'ACCESS DENIED';
       errEl.classList.remove('hidden');
       document.getElementById('admin-password').value = '';
       return;
@@ -23,8 +31,13 @@ const Admin = {
   },
 
   async loadDashboard() {
-    const res = await Api.getQuestions(App.adminPassword);
-    if (res.ok) Admin.renderDashboard(res.questions);
+    try {
+      const res = await Api.getQuestions(App.adminPassword);
+      if (res.ok) Admin.renderDashboard(res.questions);
+    } catch {
+      document.getElementById('question-list').innerHTML =
+        '<div style="font-size:8px;color:var(--red);text-align:center;padding:20px">NETWORK ERROR — REFRESH</div>';
+    }
   },
 
   renderDashboard(questions) {
