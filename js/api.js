@@ -1,5 +1,5 @@
 // js/api.js
-const API_URL = 'https://script.google.com/a/macros/thefutureglobal.io/s/AKfycbyKy_KZr8fZDRlC1YoulPdNEVATvu5XGOEPfiNEZNp-8zlD78I4xmci2-vNYqJPadDy/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyL6Biqketh9Idg6_MzkLXKfdipvKx8QghKcLmfLuYmVqXX2OA-x7NT_NQAmRp4taMU/exec';
 
 async function apiCall(payload) {
   const res = await fetch(API_URL, {
