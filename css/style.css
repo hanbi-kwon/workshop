@@ -127,9 +127,10 @@ textarea.pixel-input { min-height: 100px; }
 .pixel-btn.yellow:hover { background: #fde047; }
 
 .pixel-btn.red {
-  background: #b91c1c;
+  background: #b91c1c; /* mid-tone between --red-dark and --red for button face */
   box-shadow: 0 4px 0 var(--red-dark), 4px 0 0 #991b1b, 4px 4px 0 #450a0a, -2px -2px 0 #fca5a5;
 }
+.pixel-btn.red:hover { background: var(--red); }
 
 .pixel-btn-text {
   background: none;
