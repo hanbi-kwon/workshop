@@ -15,7 +15,7 @@
     <div class="pixel-container">
       <h1 class="retro-title">ASK ME!</h1>
       <p class="blink">▶ INSERT QUESTION ◀</p>
-      <label class="pixel-label">// YOUR QUESTION</label>
+      <label class="pixel-label" for="question-input">// YOUR QUESTION</label>
       <textarea id="question-input" class="pixel-input" maxlength="200" placeholder="궁금한 점을 자유롭게 적어주세요 :)"></textarea>
       <div id="char-count" class="char-count">0 / 200</div>
       <button id="submit-btn" class="pixel-btn green">▶ SUBMIT</button>
@@ -28,7 +28,7 @@
   <div id="screen-admin-login" class="screen hidden">
     <div class="pixel-container">
       <h1 class="retro-title">ADMIN</h1>
-      <label class="pixel-label">// PASSWORD</label>
+      <label class="pixel-label" for="admin-password">// PASSWORD</label>
       <input id="admin-password" class="pixel-input" type="password" placeholder="••••••">
       <button id="admin-login-btn" class="pixel-btn">▶ ENTER</button>
       <div id="login-error" class="error-msg hidden">ACCESS DENIED</div>
@@ -84,7 +84,7 @@
   <!-- 수정 모달 -->
   <div id="modal-edit" class="modal hidden">
     <div class="modal-box">
-      <label class="pixel-label">// EDIT QUESTION</label>
+      <label class="pixel-label" for="edit-input">// EDIT QUESTION</label>
       <textarea id="edit-input" class="pixel-input" maxlength="200"></textarea>
       <div class="modal-buttons">
         <button id="modal-save" class="pixel-btn green">SAVE</button>
