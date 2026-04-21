@@ -69,7 +69,7 @@ const Card = {
     const index = cardEl.dataset.index;
     const backEl = document.getElementById(`card-back-${index}`);
     backEl.textContent = res.question.text;
-    backEl.style.fontSize = res.question.text.length > 30 ? '6px' : '7px';
+    backEl.style.fontSize = res.question.text.length > 30 ? '8px' : '10px';
 
     cardEl.classList.add('flipped');
 
