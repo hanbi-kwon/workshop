@@ -4,6 +4,8 @@ const Shake = {
   lastShakeTime: 0,
 
   async start(container) {
+    Shake.lastShakeTime = 0; // 화면 진입 시 초기화
+
     container.innerHTML = `
       <div class="shake-screen">
         <div class="retro-title" style="font-size:14px">🎲 SHAKE!</div>
@@ -66,7 +68,15 @@ const Shake = {
     await new Promise(r => setTimeout(r, 600));
     pot.classList.remove('shaking');
 
-    const res = await Api.drawQuestion(App.adminPassword);
+    let res;
+    try {
+      res = await Api.drawQuestion(App.adminPassword);
+    } catch {
+      const hint = document.querySelector('.shake-hint');
+      if (hint) hint.textContent = 'NETWORK ERROR — TRY AGAIN';
+      btn.disabled = false;
+      return;
+    }
 
     if (!res.ok) {
       if (res.error === 'NO_MORE_QUESTIONS') {

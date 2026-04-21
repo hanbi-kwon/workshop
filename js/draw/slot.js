@@ -21,17 +21,30 @@ const Slot = {
     document.getElementById('slot-spin-btn').addEventListener('click', () => Slot.spin());
   },
 
+  escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  },
+
   async spin() {
     const btn = document.getElementById('slot-spin-btn');
     btn.disabled = true;
 
     // 뽑기 API 호출
-    const res = await Api.drawQuestion(App.adminPassword);
+    let res;
+    try {
+      res = await Api.drawQuestion(App.adminPassword);
+    } catch {
+      btn.disabled = false;
+      const screen = document.querySelector('.slot-screen');
+      if (screen) screen.insertAdjacentHTML('beforeend',
+        `<div style="font-size:8px;color:var(--red);text-align:center">NETWORK ERROR — TRY AGAIN</div>`);
+      return;
+    }
 
     if (!res.ok) {
       if (res.error === 'NO_MORE_QUESTIONS') {
-        document.querySelector('.slot-screen').innerHTML +=
-          `<div style="font-size:9px;color:var(--green);text-align:center">★ ALL QUESTIONS DRAWN! ★</div>`;
+        document.querySelector('.slot-screen').insertAdjacentHTML('beforeend',
+          `<div style="font-size:9px;color:var(--green);text-align:center">★ ALL QUESTIONS DRAWN! ★</div>`);
       }
       btn.disabled = false;
       return;
@@ -45,7 +58,7 @@ const Slot = {
 
     const reel = document.getElementById('slot-reel');
     reel.innerHTML = dummies.map((t, i) =>
-      `<div class="slot-item${t === res.question.text && i === 4 ? ' selected' : ''}">${t}</div>`
+      `<div class="slot-item${t === res.question.text && i === 4 ? ' selected' : ''}">${Slot.escapeHtml(t)}</div>`
     ).join('');
 
     // 초기 위치: 맨 아래에서 시작

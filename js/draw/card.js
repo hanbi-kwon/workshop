@@ -2,10 +2,15 @@
 const Card = {
   async start(container) {
     // 질문 수를 먼저 파악해서 카드 개수 결정
-    const questionsRes = await Api.getQuestions(App.adminPassword);
-    const remaining = questionsRes.ok
-      ? questionsRes.questions.filter(q => !q.drawn).length
-      : 5;
+    let remaining = 5; // fallback
+    try {
+      const questionsRes = await Api.getQuestions(App.adminPassword);
+      if (questionsRes.ok) {
+        remaining = questionsRes.questions.filter(q => !q.drawn).length;
+      }
+    } catch {
+      // 네트워크 오류 시 기본 5장
+    }
 
     const cardCount = Math.min(Math.max(remaining, 1), 9);
 
@@ -40,7 +45,16 @@ const Card = {
     // 다른 카드 모두 비활성화
     document.querySelectorAll('.flip-card').forEach(c => c.classList.add('disabled'));
 
-    const res = await Api.drawQuestion(App.adminPassword);
+    let res;
+    try {
+      res = await Api.drawQuestion(App.adminPassword);
+    } catch {
+      document.querySelectorAll('.flip-card').forEach(c => c.classList.remove('disabled'));
+      const screen = document.querySelector('.card-screen');
+      if (screen) screen.insertAdjacentHTML('beforeend',
+        `<div style="font-size:8px;color:var(--red);text-align:center">NETWORK ERROR — TRY AGAIN</div>`);
+      return;
+    }
 
     if (!res.ok) {
       document.querySelectorAll('.flip-card').forEach(c => c.classList.remove('disabled'));

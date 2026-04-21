@@ -1,5 +1,7 @@
 // js/draw/roulette.js
 const Roulette = {
+  rafId: null,
+
   async start(container) {
     container.innerHTML = `
       <div class="roulette-screen">
@@ -14,11 +16,21 @@ const Roulette = {
       </div>
     `;
 
-    document.getElementById('roulette-back').addEventListener('click', () => App.showScreen('screen-mode-select'));
+    document.getElementById('roulette-back').addEventListener('click', () => {
+      Roulette.cleanup();
+      App.showScreen('screen-mode-select');
+    });
     document.getElementById('roulette-spin-btn').addEventListener('click', () => Roulette.spin());
 
     // 초기 원판 그리기 (빈 칸으로)
     Roulette.draw(0, 8);
+  },
+
+  cleanup() {
+    if (Roulette.rafId) {
+      cancelAnimationFrame(Roulette.rafId);
+      Roulette.rafId = null;
+    }
   },
 
   draw(angle, segments) {
@@ -68,7 +80,14 @@ const Roulette = {
     btn.disabled = true;
     label.textContent = 'SPINNING...';
 
-    const res = await Api.drawQuestion(App.adminPassword);
+    let res;
+    try {
+      res = await Api.drawQuestion(App.adminPassword);
+    } catch {
+      label.textContent = 'NETWORK ERROR — TRY AGAIN';
+      btn.disabled = false;
+      return;
+    }
 
     if (!res.ok) {
       if (res.error === 'NO_MORE_QUESTIONS') label.textContent = '★ ALL DRAWN! ★';
@@ -93,12 +112,13 @@ const Roulette = {
       Roulette.draw(current, segments);
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        Roulette.rafId = requestAnimationFrame(animate);
       } else {
+        Roulette.rafId = null;
         setTimeout(() => App.showReveal(res.question.text, res.drawn, res.total), 500);
       }
     };
 
-    requestAnimationFrame(animate);
+    Roulette.rafId = requestAnimationFrame(animate);
   }
 };
