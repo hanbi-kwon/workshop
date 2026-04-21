@@ -467,3 +467,63 @@ textarea.pixel-input { min-height: 250px; }
   z-index: 50;
 }
 .fullscreen-btn:hover { color: var(--text); border-color: var(--indigo); }
+
+/* ── FX 효과 ── */
+@keyframes fx-flash {
+  0% { opacity: 0.4; }
+  100% { opacity: 0; }
+}
+
+.fx-glitch {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: var(--bg);
+  animation: fx-glitch-anim 0.3s steps(6) forwards;
+}
+@keyframes fx-glitch-anim {
+  0% { opacity: 1; clip-path: inset(0 0 80% 0); }
+  15% { clip-path: inset(40% 0 20% 0); background: var(--indigo); }
+  30% { clip-path: inset(10% 0 60% 0); background: var(--bg); }
+  45% { clip-path: inset(70% 0 5% 0); background: var(--green); }
+  60% { clip-path: inset(20% 0 40% 0); background: var(--bg); }
+  75% { clip-path: inset(50% 0 10% 0); }
+  100% { opacity: 0; }
+}
+
+@keyframes fx-reveal-pop {
+  0% { transform: scale(0.3); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fx-badge-drop {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ── BGM 토글 버튼 ── */
+.bgm-btn {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  background: var(--surface2);
+  border: 3px solid var(--border);
+  color: var(--text-dim);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 23px;
+  padding: 15px 25px;
+  cursor: pointer;
+  z-index: 50;
+}
+.bgm-btn:hover { color: var(--text); border-color: var(--indigo); }
+
+/* ── 화면 전환 애니메이션 ── */
+.screen.active {
+  animation: fx-screen-in 0.25s ease-out;
+}
+@keyframes fx-screen-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

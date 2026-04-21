@@ -6,6 +6,8 @@ const App = {
   totalCount: 0,
 
   showScreen(id) {
+    Fx.glitch();
+    Fx.sfx('click');
     document.querySelectorAll('.screen').forEach(s => {
       s.classList.remove('active');
       s.classList.add('hidden');
@@ -30,8 +32,8 @@ const App = {
     submitBtn.addEventListener('click', async () => {
       const text = input.value.trim();
       if (!text) return;
-      submitBtn.disabled = true;
       submitMsg.className = 'submit-msg hidden';
+      Fx.btnLoading(submitBtn, submitBtn.textContent);
       try {
         const res = await Api.submit(text);
         if (res.ok) {
@@ -39,15 +41,21 @@ const App = {
           charCount.textContent = '0 / 200';
           submitMsg.textContent = '✓ 질문이 전달됐어요!';
           submitMsg.className = 'submit-msg success';
+          Fx.flash('#22c55e');
+          Fx.sfx('submit');
         } else {
           submitMsg.textContent = '✗ 오류가 발생했어요. 다시 시도해주세요.';
           submitMsg.className = 'submit-msg error';
+          Fx.sfx('error');
         }
       } catch {
         submitMsg.textContent = '✗ 네트워크 오류입니다.';
         submitMsg.className = 'submit-msg error';
+        Fx.sfx('error');
       }
+      Fx.btnDone(submitBtn);
       // 5초 쿨다운
+      submitBtn.disabled = true;
       setTimeout(() => { submitBtn.disabled = false; }, 5000);
     });
 
@@ -100,6 +108,16 @@ const App = {
       else document.exitFullscreen();
     });
     document.body.appendChild(fsBtn);
+
+    // BGM 토글 버튼
+    const bgmBtn = document.createElement('button');
+    bgmBtn.className = 'bgm-btn';
+    bgmBtn.textContent = '♪ OFF';
+    bgmBtn.addEventListener('click', () => {
+      const playing = Fx.toggleBgm();
+      bgmBtn.textContent = playing ? '♪ ON' : '♪ OFF';
+    });
+    document.body.appendChild(bgmBtn);
   },
 
   async startDraw() {
@@ -117,7 +135,10 @@ const App = {
     App.totalCount = total;
     document.getElementById('revealed-question').textContent = `"${text}"`;
     document.getElementById('reveal-progress').textContent = `Q.${drawn} / ${total}  |  REMAIN: ${total - drawn}`;
+    Fx.flash('#6366f1');
     App.showScreen('screen-reveal');
+    Fx.sfx('reveal');
+    Fx.revealEntrance();
   }
 };
 
