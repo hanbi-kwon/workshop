@@ -479,17 +479,13 @@ textarea.pixel-input { min-height: 250px; }
   inset: 0;
   z-index: 9998;
   pointer-events: none;
-  background: var(--bg);
-  animation: fx-glitch-anim 0.3s steps(6) forwards;
+  background: var(--indigo);
+  animation: fx-wipe 0.3s ease-in-out forwards;
 }
-@keyframes fx-glitch-anim {
-  0% { opacity: 1; clip-path: inset(0 0 80% 0); }
-  15% { clip-path: inset(40% 0 20% 0); background: var(--indigo); }
-  30% { clip-path: inset(10% 0 60% 0); background: var(--bg); }
-  45% { clip-path: inset(70% 0 5% 0); background: var(--green); }
-  60% { clip-path: inset(20% 0 40% 0); background: var(--bg); }
-  75% { clip-path: inset(50% 0 10% 0); }
-  100% { opacity: 0; }
+@keyframes fx-wipe {
+  0% { transform: scaleY(0); opacity: 0.8; }
+  40% { transform: scaleY(1); opacity: 0.6; }
+  100% { transform: scaleY(0); opacity: 0; }
 }
 
 @keyframes fx-reveal-pop {
