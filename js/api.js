@@ -1,5 +1,5 @@
 // js/api.js
-const API_URL = 'YOUR_APPS_SCRIPT_DEPLOY_URL'; // Task 3 Step 5에서 복사한 URL
+const API_URL = 'https://script.google.com/a/macros/thefutureglobal.io/s/AKfycbyKy_KZr8fZDRlC1YoulPdNEVATvu5XGOEPfiNEZNp-8zlD78I4xmci2-vNYqJPadDy/exec';
 
 async function apiCall(payload) {
   const res = await fetch(API_URL, {
