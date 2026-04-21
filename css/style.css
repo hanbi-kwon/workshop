@@ -32,6 +32,7 @@ body {
 /* ── 화면 전환 ── */
 .screen { display: none; }
 .screen.active { display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 32px 16px; }
+#screen-draw.active { padding: 0; align-items: stretch; }
 .screen.fullscreen { display: flex; padding: 0; }
 
 /* ── 컨테이너 ── */
@@ -303,9 +304,9 @@ textarea.pixel-input { min-height: 100px; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   gap: 24px;
-  padding: 32px 16px;
+  padding: 16px;
 }
 .slot-title { font-size: 16px; color: var(--indigo); text-shadow: 2px 2px 0 var(--indigo-dark); }
 .slot-machine {
@@ -347,9 +348,9 @@ textarea.pixel-input { min-height: 100px; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   gap: 20px;
-  padding: 32px 16px;
+  padding: 16px;
 }
 .roulette-wrap {
   position: relative;
@@ -376,9 +377,9 @@ textarea.pixel-input { min-height: 100px; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   gap: 24px;
-  padding: 32px 16px;
+  padding: 16px;
 }
 .card-grid {
   display: flex;
@@ -432,9 +433,9 @@ textarea.pixel-input { min-height: 100px; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   gap: 24px;
-  padding: 32px 16px;
+  padding: 16px;
   text-align: center;
 }
 .shake-pot {
