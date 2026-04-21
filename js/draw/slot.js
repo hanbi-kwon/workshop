@@ -9,7 +9,7 @@ const Slot = {
           <div class="slot-reel" id="slot-reel"></div>
         </div>
         <div class="slot-arrows">▼▼▼</div>
-        <button id="slot-spin-btn" class="pixel-btn" style="max-width:220px">▶ SPIN!</button>
+        <button id="slot-spin-btn" class="pixel-btn" style="max-width:550px">▶ SPIN!</button>
         <button id="slot-back" class="pixel-btn-text">[ CHANGE MODE ]</button>
       </div>
     `;
@@ -62,7 +62,7 @@ const Slot = {
     ).join('');
 
     // 초기 위치: 맨 아래에서 시작
-    const itemHeight = 80;
+    const itemHeight = 200;
     const targetIndex = 4; // 정답 위치
     reel.style.transition = 'none';
     reel.style.top = `-${(dummies.length - 1) * itemHeight}px`;

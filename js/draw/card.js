@@ -25,8 +25,8 @@ const Card = {
 
     container.innerHTML = `
       <div class="card-screen">
-        <div class="retro-title" style="font-size:14px">🃏 CARD FLIP</div>
-        <div style="font-size:8px;color:var(--text-dim)">카드를 선택하세요</div>
+        <div class="retro-title" style="font-size:35px">🃏 CARD FLIP</div>
+        <div style="font-size:20px;color:var(--text-dim)">카드를 선택하세요</div>
         <div class="card-grid">${cards}</div>
         <button id="card-back" class="pixel-btn-text">[ CHANGE MODE ]</button>
       </div>
@@ -69,7 +69,7 @@ const Card = {
     const index = cardEl.dataset.index;
     const backEl = document.getElementById(`card-back-${index}`);
     backEl.textContent = res.question.text;
-    backEl.style.fontSize = res.question.text.length > 30 ? '8px' : '10px';
+    backEl.style.fontSize = res.question.text.length > 30 ? '18px' : '25px';
 
     cardEl.classList.add('flipped');
 

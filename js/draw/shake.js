@@ -8,10 +8,10 @@ const Shake = {
 
     container.innerHTML = `
       <div class="shake-screen">
-        <div class="retro-title" style="font-size:14px">🎲 SHAKE!</div>
+        <div class="retro-title" style="font-size:35px">🎲 SHAKE!</div>
         <div class="shake-pot" id="shake-pot">🏮</div>
         <div class="shake-hint">버튼을 누르거나<br>폰을 흔들어주세요!</div>
-        <button id="shake-btn" class="pixel-btn" style="max-width:220px">🎲 SHAKE!</button>
+        <button id="shake-btn" class="pixel-btn" style="max-width:550px">🎲 SHAKE!</button>
         <button id="shake-back" class="pixel-btn-text">[ CHANGE MODE ]</button>
       </div>
     `;
