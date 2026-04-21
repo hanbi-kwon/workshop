@@ -1,0 +1,104 @@
+// js/draw/roulette.js
+const Roulette = {
+  async start(container) {
+    container.innerHTML = `
+      <div class="roulette-screen">
+        <div class="retro-title" style="font-size:14px">🎡 ROULETTE</div>
+        <div class="roulette-wrap">
+          <canvas id="roulette-canvas" class="roulette-canvas" width="260" height="260"></canvas>
+          <div class="roulette-pointer">▼</div>
+        </div>
+        <div id="roulette-label" style="font-size:8px;color:var(--text-dim);text-align:center">SPIN을 눌러주세요</div>
+        <button id="roulette-spin-btn" class="pixel-btn" style="max-width:220px">▶ SPIN!</button>
+        <button id="roulette-back" class="pixel-btn-text">[ CHANGE MODE ]</button>
+      </div>
+    `;
+
+    document.getElementById('roulette-back').addEventListener('click', () => App.showScreen('screen-mode-select'));
+    document.getElementById('roulette-spin-btn').addEventListener('click', () => Roulette.spin());
+
+    // 초기 원판 그리기 (빈 칸으로)
+    Roulette.draw(0, 8);
+  },
+
+  draw(angle, segments) {
+    const canvas = document.getElementById('roulette-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const cx = 130, cy = 130, r = 120;
+    const colors = ['#3730a3','#4f46e5','#6366f1','#818cf8','#4338ca','#5b21b6','#7c3aed','#6d28d9'];
+    const segAngle = (Math.PI * 2) / segments;
+
+    ctx.clearRect(0, 0, 260, 260);
+
+    for (let i = 0; i < segments; i++) {
+      const start = angle + i * segAngle;
+      const end = start + segAngle;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, r, start, end);
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.fill();
+      ctx.strokeStyle = '#0a0a0f';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // 구분선 (픽셀 느낌)
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + r * Math.cos(start), cy + r * Math.sin(start));
+      ctx.strokeStyle = '#1e1b4b';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    }
+
+    // 중심 원
+    ctx.beginPath();
+    ctx.arc(cx, cy, 14, 0, Math.PI * 2);
+    ctx.fillStyle = '#0a0a0f';
+    ctx.fill();
+    ctx.strokeStyle = '#6366f1';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+  },
+
+  async spin() {
+    const btn = document.getElementById('roulette-spin-btn');
+    const label = document.getElementById('roulette-label');
+    btn.disabled = true;
+    label.textContent = 'SPINNING...';
+
+    const res = await Api.drawQuestion(App.adminPassword);
+
+    if (!res.ok) {
+      if (res.error === 'NO_MORE_QUESTIONS') label.textContent = '★ ALL DRAWN! ★';
+      btn.disabled = false;
+      return;
+    }
+
+    // 스핀 애니메이션
+    const segments = 8;
+    const duration = 3000;
+    const totalRotation = Math.PI * 2 * 5 + Math.random() * Math.PI * 2; // 5바퀴 + 랜덤
+    const startTime = Date.now();
+    let current = 0;
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      current = totalRotation * eased;
+
+      Roulette.draw(current, segments);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setTimeout(() => App.showReveal(res.question.text, res.drawn, res.total), 500);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+};
