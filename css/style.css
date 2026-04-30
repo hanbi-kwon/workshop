@@ -935,54 +935,71 @@ textarea.pixel-input { min-height: 250px; }
   textarea.pixel-input { min-height: 150px; }
   .char-count { font-size: 16px; }
 
-  .pixel-btn { font-size: 20px; padding: 20px 25px; }
-  .pixel-btn-text { font-size: 18px; padding: 12px; }
+  .pixel-btn { font-size: 16px; padding: 16px 20px; }
+  .pixel-btn-text { font-size: 14px; padding: 10px; }
+  .admin-tab { font-size: 14px; padding: 12px; }
+  .admin-tab-content { padding: 15px; }
 
   .mode-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
   .mode-btn { font-size: 20px; padding: 30px 15px; }
 
   /* 미니게임 모바일 */
-  .mini-game-screen { gap: 18px; padding: 15px 0; }
-  .mini-game-header { font-size: 18px; flex-wrap: wrap; gap: 8px; }
-  .mini-game-title { font-size: 20px; }
-  .coin-display { font-size: 22px; }
-  .name-display { font-size: 18px; }
+  .mini-game-screen { gap: 12px; padding: 10px 0 60px 0; }
+  .mini-game-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 14px;
+  }
+  .mini-game-title { font-size: 16px; }
+  .coin-display { font-size: 16px; }
+  .name-display { font-size: 14px; }
+  .mini-player-info { flex-direction: column; align-items: flex-start; gap: 4px; }
 
-  .mini-game-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .mini-game-btn { font-size: 18px; padding: 25px 10px; line-height: 2; }
+  .mini-game-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .mini-game-btn { font-size: 14px; padding: 20px 8px; line-height: 2; }
 
-  .game-rule { font-size: 13px; }
-  .game-result { font-size: 18px; }
-  .bet-amount { font-size: 18px; min-width: 140px; }
-  .bet-btn { font-size: 18px; padding: 8px 15px; }
+  .game-rule { font-size: 11px; line-height: 1.8; padding: 8px 10px; }
+  .game-result { font-size: 14px; min-height: 40px; padding: 8px; }
+  .bet-amount { font-size: 14px; min-width: 100px; }
+  .bet-btn { font-size: 14px; padding: 6px 12px; }
+  .bet-controls { gap: 10px; }
 
   /* 슬롯 모바일 */
-  .slot-mg-reel { width: 90px; height: 90px; font-size: 40px; }
+  .slot-mg-machine { gap: 8px; }
+  .slot-mg-reel { width: 80px; height: 80px; font-size: 35px; }
 
   /* 가위바위보 모바일 */
-  .rps-emoji { font-size: 60px; }
-  .rps-vs-text { font-size: 22px; }
-  .rps-label { font-size: 14px; }
-  .rps-pick { font-size: 40px; padding: 15px 20px; }
+  .rps-vs { gap: 15px; }
+  .rps-emoji { font-size: 45px; margin-bottom: 5px; }
+  .rps-vs-text { font-size: 18px; }
+  .rps-label { font-size: 11px; }
+  .rps-choices { gap: 10px; }
+  .rps-pick { font-size: 30px; padding: 10px 15px; }
 
   /* 룰렛 모바일 */
-  .rl-cell { padding: 15px 5px; font-size: 16px; }
-  .rl-pick-btn { font-size: 14px; padding: 12px 15px; }
+  .rl-board { gap: 5px; }
+  .rl-cell { padding: 10px 4px; font-size: 12px; }
+  .rl-pick-row { gap: 8px; }
+  .rl-pick-btn { font-size: 11px; padding: 10px 12px; }
 
   /* 동전 모바일 */
-  .cf-coin { font-size: 90px; }
-  .cf-pick-btn, .cf-dbl-btn { font-size: 16px; padding: 15px 20px; }
+  .cf-coin { font-size: 70px; }
+  .cf-picks { gap: 10px; }
+  .cf-pick-btn, .cf-dbl-btn { font-size: 13px; padding: 12px 15px; }
 
   /* 메모리 모바일 */
-  .mem-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .mem-front { font-size: 22px; }
-  .mem-back { font-size: 30px; }
+  .mem-grid { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+  .mem-front { font-size: 18px; }
+  .mem-back { font-size: 25px; }
 
   /* 주사위 모바일 */
-  .dice-face { font-size: 70px; }
-  .dice-sum { font-size: 20px; }
-  .dice-pick-btn { font-size: 16px; padding: 15px 18px; }
-  .dice-pick-btn small { font-size: 12px; }
+  .dice-area { gap: 15px; }
+  .dice-face { font-size: 55px; }
+  .dice-sum { font-size: 16px; }
+  .dice-picks { gap: 8px; }
+  .dice-pick-btn { font-size: 13px; padding: 12px 14px; line-height: 1.8; }
+  .dice-pick-btn small { font-size: 10px; }
 
   /* 리더보드 모바일 */
   .lb-rank { font-size: 20px; min-width: 40px; }
@@ -1002,8 +1019,9 @@ textarea.pixel-input { min-height: 250px; }
   .submit-msg { font-size: 18px; }
   .error-msg { font-size: 18px; }
 
-  .fullscreen-btn { font-size: 16px; padding: 10px 15px; bottom: 20px; right: 15px; }
-  .bgm-btn { font-size: 16px; padding: 10px 15px; bottom: 20px; left: 15px; }
+  .fullscreen-btn { font-size: 11px; padding: 6px 10px; bottom: 8px; right: 8px; }
+  .bgm-btn { font-size: 11px; padding: 6px 10px; bottom: 8px; left: 8px; }
+  .mini-back { margin-bottom: 30px; }
 
   /* 슬롯(뽑기) 모바일 */
   .slot-screen { padding: 20px; gap: 30px; }

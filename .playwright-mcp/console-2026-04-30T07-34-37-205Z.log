@@ -1,0 +1,3 @@
+[     623ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://hanbi-kwon.github.io/workshop/:0
+[     951ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://hanbi-kwon.github.io/favicon.ico:0
+[   22868ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://hanbi-kwon.github.io/favicon.ico:0
