@@ -59,6 +59,7 @@ body {
   font-size: 28px;
   color: var(--indigo);
   letter-spacing: 5px;
+  text-align: center;
 }
 
 .blink {
@@ -927,7 +928,7 @@ textarea.pixel-input { min-height: 250px; }
 
   .retro-title { font-size: 22px; letter-spacing: 1px; text-shadow: 2px 2px 0 var(--indigo-dark); }
   .retro-title.small { font-size: 14px; text-shadow: 2px 2px 0 var(--indigo-dark); }
-  .pixel-label { font-size: 18px; }
+  .pixel-label { font-size: 14px; text-align: center; width: 100%; }
   .blink { font-size: 18px; }
 
   .pixel-container { gap: 18px; padding-top: 20px; }
