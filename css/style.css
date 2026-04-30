@@ -925,8 +925,8 @@ textarea.pixel-input { min-height: 250px; }
   #screen-mini-games.active,
   #screen-mini-play.active { padding: 15px 10px; }
 
-  .retro-title { font-size: 30px; letter-spacing: 2px; }
-  .retro-title.small { font-size: 22px; }
+  .retro-title { font-size: 24px; letter-spacing: 2px; text-shadow: 4px 4px 0 var(--indigo-dark), -2px -2px 0 var(--indigo-light); }
+  .retro-title.small { font-size: 16px; }
   .pixel-label { font-size: 18px; }
   .blink { font-size: 18px; }
 
@@ -937,8 +937,10 @@ textarea.pixel-input { min-height: 250px; }
 
   .pixel-btn { font-size: 16px; padding: 16px 20px; }
   .pixel-btn-text { font-size: 14px; padding: 10px; }
-  .admin-tab { font-size: 14px; padding: 12px; }
-  .admin-tab-content { padding: 15px; }
+  .admin-tab { font-size: 12px; padding: 10px 8px; }
+  .admin-tab-content { padding: 10px; }
+  .admin-ranking-header { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .stats { font-size: 16px; line-height: 1.8; }
 
   .mode-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
   .mode-btn { font-size: 20px; padding: 30px 15px; }
