@@ -12,6 +12,7 @@ const SlotMachine = {
           <span class="coin-display"></span>
           <span class="mini-game-title">🎰 SLOT MACHINE</span>
         </div>
+        <div class="game-rule">SPIN 누르면 릴이 돌아요. 3개 같으면 JACKPOT! 2개 같으면 x2!</div>
         <div class="slot-mg-machine">
           <div class="slot-mg-reel" id="reel-0"><span>${SlotMachine.symbols[0]}</span></div>
           <div class="slot-mg-reel" id="reel-1"><span>${SlotMachine.symbols[0]}</span></div>

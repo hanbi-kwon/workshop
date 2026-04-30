@@ -575,6 +575,16 @@ textarea.pixel-input { min-height: 250px; }
 .mini-game-btn:hover { border-color: var(--red); color: var(--red); }
 .mini-game-btn:active { transform: translate(5px, 5px); box-shadow: 3px 3px 0 var(--border); }
 
+.game-rule {
+  font-size: 18px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 2;
+  padding: 10px 15px;
+  border: 2px dashed var(--border);
+  background: var(--surface);
+}
+
 .game-result {
   font-size: 25px;
   color: var(--text);
@@ -894,6 +904,7 @@ textarea.pixel-input { min-height: 250px; }
   .mini-game-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .mini-game-btn { font-size: 18px; padding: 25px 10px; line-height: 2; }
 
+  .game-rule { font-size: 13px; }
   .game-result { font-size: 18px; }
   .bet-amount { font-size: 18px; min-width: 140px; }
   .bet-btn { font-size: 18px; padding: 8px 15px; }

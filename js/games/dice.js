@@ -11,6 +11,7 @@ const Dice = {
           <span class="coin-display"></span>
           <span class="mini-game-title">🎲 UNDER / OVER</span>
         </div>
+        <div class="game-rule">주사위 2개의 합이 7보다 작으면 UNDER, 크면 OVER! 딱 7이면 x5!</div>
         <div class="dice-area">
           <span class="dice-face" id="die-0">⚀</span>
           <span class="dice-face" id="die-1">⚀</span>

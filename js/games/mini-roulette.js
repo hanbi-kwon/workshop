@@ -17,6 +17,7 @@ const MiniRoulette = {
           <span class="coin-display"></span>
           <span class="mini-game-title">🎡 ROULETTE</span>
         </div>
+        <div class="game-rule">RED/BLACK 맞추면 x2! GREEN 맞추면 x9! 색을 골라 베팅!</div>
         <div class="rl-board">${cells}</div>
         <div class="bet-controls">
           <button class="bet-btn" data-change="-5">◀</button>

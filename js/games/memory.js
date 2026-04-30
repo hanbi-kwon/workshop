@@ -48,6 +48,7 @@ const Memory = {
           <span class="coin-display"></span>
           <span class="mini-game-title">🃏 MEMORY</span>
         </div>
+        <div class="game-rule">카드를 뒤집어 같은 그림 짝을 찾으세요! 적은 시도 = 높은 보상!</div>
         <div id="mem-info" class="game-result">FIND ALL 6 PAIRS!</div>
         <div class="mem-grid">${grid}</div>
         <button class="pixel-btn-text mini-back">[ BACK ]</button>

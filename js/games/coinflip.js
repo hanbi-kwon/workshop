@@ -14,6 +14,7 @@ const CoinFlip = {
           <span class="coin-display"></span>
           <span class="mini-game-title">🪙 COIN FLIP</span>
         </div>
+        <div class="game-rule">앞(HEADS) 뒤(TAILS) 맞추면 x2! 계속 도전 or CASH OUT!</div>
         <div class="cf-coin" id="cf-coin">🪙</div>
         <div class="bet-controls" id="cf-bet-ctrl">
           <button class="bet-btn" data-change="-5">◀</button>

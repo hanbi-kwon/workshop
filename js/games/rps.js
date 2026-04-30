@@ -16,6 +16,7 @@ const RPS = {
           <span class="coin-display"></span>
           <span class="mini-game-title">✊ DOUBLE UP</span>
         </div>
+        <div class="game-rule">가위바위보에서 이기면 코인 2배! 계속 도전하거나 CASH OUT으로 확보!</div>
         <div class="rps-arena">
           <div class="rps-vs">
             <div class="rps-side">
