@@ -27,6 +27,7 @@ const Admin = {
     App.adminPassword = pw;
     document.getElementById('admin-password').value = '';
     Admin.renderDashboard(res.questions);
+    Admin.loadLeaderboard();
     App.showScreen('screen-admin-dash');
   },
 
@@ -113,6 +114,32 @@ const Admin = {
 
   escapeHtml(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  },
+
+  async loadLeaderboard() {
+    const container = document.getElementById('admin-leaderboard');
+    if (!container) return;
+    container.innerHTML = '<div class="lb-loading">LOADING...</div>';
+
+    try {
+      const res = await Api.getLeaderboard();
+      if (!res.ok || !res.leaderboard.length) {
+        container.innerHTML = '<div class="lb-empty">NO PLAYERS YET</div>';
+        return;
+      }
+
+      const medals = ['👑', '🥈', '🥉'];
+      container.innerHTML = res.leaderboard.map((p, i) => {
+        const rank = i < 3 ? medals[i] : `${i + 1}.`;
+        return `<div class="lb-row${i < 3 ? ' lb-top' + (i + 1) : ''}">
+          <span class="lb-rank">${rank}</span>
+          <span class="lb-name">${Admin.escapeHtml(p.name)}</span>
+          <span class="lb-coins">🪙 ${p.coins}</span>
+        </div>`;
+      }).join('');
+    } catch {
+      container.innerHTML = '<div class="lb-empty">NETWORK ERROR</div>';
+    }
   },
 
   timeAgo(isoString) {

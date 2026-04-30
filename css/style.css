@@ -842,6 +842,20 @@ textarea.pixel-input { min-height: 250px; }
 }
 
 /* ── 리더보드 ── */
+.admin-ranking {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.admin-ranking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.lb-top1 { border-left-color: var(--yellow); background: #1a1a10; }
+.lb-top2 { border-left-color: #aaa; }
+.lb-top3 { border-left-color: #cd7f32; }
+
 .lb-list {
   width: 100%;
   display: flex;

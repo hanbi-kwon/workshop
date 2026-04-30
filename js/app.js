@@ -86,6 +86,10 @@ const App = {
       App.showScreen('screen-submit');
     });
 
+    document.getElementById('lb-refresh-btn').addEventListener('click', () => {
+      Admin.loadLeaderboard();
+    });
+
     // 모드 선택
     document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.addEventListener('click', () => {

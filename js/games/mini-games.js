@@ -32,7 +32,6 @@ const MiniGames = {
         </div>
         <div class="mini-game-grid">${grid}</div>
         <div class="mini-bottom-btns">
-          <button id="show-leaderboard" class="pixel-btn">🏆 RANKING</button>
           <button id="change-name" class="pixel-btn-text">[ CHANGE NAME ]</button>
           <button id="coin-reset" class="pixel-btn-text">[ RESET COINS ]</button>
           <button id="mini-back-home" class="pixel-btn-text">[ BACK ]</button>
@@ -46,8 +45,6 @@ const MiniGames = {
         if (game) MiniGames.startGame(game);
       });
     });
-
-    document.getElementById('show-leaderboard').addEventListener('click', () => MiniGames.showLeaderboard());
 
     document.getElementById('change-name').addEventListener('click', async () => {
       await Coins.promptName();
