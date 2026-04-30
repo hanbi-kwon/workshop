@@ -26,5 +26,11 @@ const Api = {
   },
   drawQuestion() {
     return apiCall({ action: 'drawQuestion' });
+  },
+  saveScore(name, coins) {
+    return apiCall({ action: 'saveScore', name, coins });
+  },
+  getLeaderboard() {
+    return apiCall({ action: 'getLeaderboard' });
   }
 };

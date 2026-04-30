@@ -17,6 +17,17 @@ function getSheet() {
   return SpreadsheetApp.openById(sheetId).getSheetByName('questions');
 }
 
+function getLeaderboardSheet() {
+  const { sheetId } = getConfig();
+  const ss = SpreadsheetApp.openById(sheetId);
+  let sheet = ss.getSheetByName('leaderboard');
+  if (!sheet) {
+    sheet = ss.insertSheet('leaderboard');
+    sheet.appendRow(['name', 'coins', 'updated_at']);
+  }
+  return sheet;
+}
+
 function respond(data) {
   return ContentService
     .createTextOutput(JSON.stringify(data))
@@ -33,9 +44,11 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     const { action, password } = data;
 
-    if (action === 'submitQuestion') return submitQuestion(data);
-    if (action === 'drawQuestion')   return drawQuestion();
-    if (action === 'getQuestions')   return getQuestions();
+    if (action === 'submitQuestion')  return submitQuestion(data);
+    if (action === 'drawQuestion')    return drawQuestion();
+    if (action === 'getQuestions')    return getQuestions();
+    if (action === 'saveScore')       return saveScore(data);
+    if (action === 'getLeaderboard')  return getLeaderboard();
 
     if (!checkAdmin(password)) return respond({ ok: false, error: 'ACCESS DENIED' });
     if (action === 'deleteQuestion') return deleteQuestion(data);
@@ -130,6 +143,49 @@ function updateQuestion(data) {
   } finally {
     lock.releaseLock();
   }
+}
+
+// ── 리더보드: 점수 저장 ─────────────────────────────
+function saveScore(data) {
+  const name = (data.name || '').trim();
+  const coins = parseInt(data.coins, 10);
+  if (!name || name.length > 20 || isNaN(coins)) return respond({ ok: false, error: 'Invalid data' });
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(5000);
+  try {
+    const sheet = getLeaderboardSheet();
+    const rows = sheet.getDataRange().getValues();
+    const now = new Date().toISOString();
+
+    // 이름이 같으면 업데이트
+    for (let i = 1; i < rows.length; i++) {
+      if (rows[i][0] === name) {
+        sheet.getRange(i + 1, 2).setValue(coins);
+        sheet.getRange(i + 1, 3).setValue(now);
+        return respond({ ok: true });
+      }
+    }
+    // 새 참가자
+    sheet.appendRow([name, coins, now]);
+    return respond({ ok: true });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+// ── 리더보드: 조회 ──────────────────────────────────
+function getLeaderboard() {
+  const sheet = getLeaderboardSheet();
+  const rows = sheet.getDataRange().getValues();
+  if (rows.length <= 1) return respond({ ok: true, leaderboard: [] });
+
+  const leaderboard = rows.slice(1)
+    .filter(r => r[0])
+    .map(r => ({ name: r[0], coins: parseInt(r[1], 10) || 0 }))
+    .sort((a, b) => b.coins - a.coins);
+
+  return respond({ ok: true, leaderboard });
 }
 
 // ── 질문 뽑기 (관리자) ──────────────────────────────
