@@ -515,6 +515,303 @@ textarea.pixel-input { min-height: 250px; }
 }
 .bgm-btn:hover { color: var(--text); border-color: var(--indigo); }
 
+/* ── 미니게임 공통 ── */
+#screen-mini-games.active,
+#screen-mini-play.active { padding: 40px; }
+
+.mini-game-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.mini-game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 25px;
+  color: var(--text-dim);
+}
+.mini-game-title { color: var(--indigo); font-size: 30px; }
+
+.coin-display {
+  font-size: 30px;
+  color: var(--yellow);
+  text-shadow: 3px 3px 0 var(--yellow-dark);
+}
+
+.mini-coin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.mini-game-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 25px;
+  width: 100%;
+}
+
+.mini-game-btn {
+  background: var(--surface);
+  border: 5px solid var(--border);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 25px;
+  padding: 50px 20px;
+  cursor: pointer;
+  line-height: 2.5;
+  box-shadow: 8px 8px 0 var(--border);
+  transition: transform 0.05s, box-shadow 0.05s;
+}
+.mini-game-btn:hover { border-color: var(--red); color: var(--red); }
+.mini-game-btn:active { transform: translate(5px, 5px); box-shadow: 3px 3px 0 var(--border); }
+
+.game-result {
+  font-size: 25px;
+  color: var(--text);
+  text-align: center;
+  padding: 15px;
+  line-height: 2;
+  min-height: 60px;
+}
+.game-result.win { color: var(--green); }
+.game-result.lose { color: var(--red); }
+
+.bet-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+.bet-amount { font-size: 25px; color: var(--yellow); min-width: 200px; text-align: center; }
+.bet-btn {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 25px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.bet-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+
+/* ── 슬롯머신 (미니) ── */
+.slot-mg-machine {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.slot-mg-reel {
+  width: 160px;
+  height: 160px;
+  background: #000;
+  border: 5px solid var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  box-shadow: inset 3px 3px 0 #333, 5px 5px 0 var(--yellow-dark);
+}
+.slot-mg-tick { background: #111; }
+
+/* ── 가위바위보 ── */
+.rps-arena { width: 100%; }
+.rps-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.rps-side { text-align: center; }
+.rps-emoji { font-size: 100px; margin-bottom: 15px; }
+.rps-label { font-size: 20px; color: var(--text-dim); }
+.rps-vs-text { font-size: 35px; color: var(--red); }
+.rps-choices {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+.rps-pick {
+  font-size: 60px;
+  background: var(--surface);
+  border: 5px solid var(--border);
+  padding: 25px 35px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--border);
+  transition: transform 0.05s;
+}
+.rps-pick:hover { border-color: var(--indigo); transform: scale(1.1); }
+
+/* ── 룰렛 (미니) ── */
+.rl-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 600px;
+  width: 100%;
+}
+.rl-cell {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  padding: 25px 10px;
+  text-align: center;
+  font-size: 22px;
+  color: var(--text);
+  transition: background 0.1s, border-color 0.1s;
+}
+.rl-cell.rl-active {
+  background: var(--indigo);
+  border-color: var(--indigo-light);
+  box-shadow: 0 0 15px var(--indigo);
+}
+.rl-pick-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.rl-pick-btn {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 20px;
+  padding: 20px 25px;
+  cursor: pointer;
+}
+.rl-pick-btn:hover { border-color: var(--indigo); color: var(--indigo); }
+
+/* ── 동전 뒤집기 ── */
+.cf-coin {
+  font-size: 150px;
+  text-align: center;
+  line-height: 1;
+}
+.cf-flipping { animation: cf-flip-anim 0.6s ease-in-out; }
+@keyframes cf-flip-anim {
+  0% { transform: rotateY(0deg) scale(1); }
+  50% { transform: rotateY(900deg) scale(1.3); }
+  100% { transform: rotateY(1800deg) scale(1); }
+}
+.cf-picks {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.cf-pick-btn, .cf-dbl-btn {
+  background: var(--surface);
+  border: 5px solid var(--border);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  padding: 25px 35px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--border);
+}
+.cf-pick-btn:hover, .cf-dbl-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+
+/* ── 카드 짝맞추기 ── */
+.mem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 700px;
+  width: 100%;
+}
+.mem-card {
+  aspect-ratio: 3/4;
+  perspective: 800px;
+  cursor: pointer;
+}
+.mem-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+}
+.mem-card.mem-flipped .mem-card-inner,
+.mem-card.mem-matched .mem-card-inner { transform: rotateY(180deg); }
+.mem-front, .mem-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--border);
+}
+.mem-front {
+  background: var(--surface);
+  font-size: 35px;
+  color: var(--text-dim);
+  box-shadow: 4px 4px 0 var(--border);
+}
+.mem-back {
+  background: #000;
+  transform: rotateY(180deg);
+  font-size: 50px;
+  border-color: var(--green);
+}
+.mem-card.mem-matched .mem-front,
+.mem-card.mem-matched .mem-back { border-color: var(--yellow); }
+.mem-card.mem-matched { pointer-events: none; }
+
+/* ── 주사위 ── */
+.dice-area {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+.dice-face {
+  font-size: 120px;
+  line-height: 1;
+  filter: drop-shadow(3px 3px 0 var(--indigo-dark));
+}
+.dice-shake { animation: dice-roll 0.1s steps(2) infinite; }
+@keyframes dice-roll {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+.dice-sum {
+  font-size: 30px;
+  color: var(--text-dim);
+  text-align: center;
+}
+.dice-picks {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.dice-pick-btn {
+  background: var(--surface);
+  border: 5px solid var(--border);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  padding: 25px 30px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--border);
+  line-height: 2;
+}
+.dice-pick-btn small { font-size: 16px; color: var(--yellow); }
+.dice-pick-btn:hover { border-color: var(--indigo); color: var(--indigo); }
+.dice-pick-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.dice-pick-seven { border-color: var(--yellow-dark); }
+.dice-pick-seven:hover { border-color: var(--yellow); color: var(--yellow); }
+
 /* ── 화면 전환 애니메이션 ── */
 .screen.active {
   animation: fx-screen-in 0.25s ease-out;

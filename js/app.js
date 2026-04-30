@@ -63,6 +63,10 @@ const App = {
       App.showScreen('screen-mode-select');
     });
 
+    document.getElementById('casino-link').addEventListener('click', () => {
+      MiniGames.showMenu();
+    });
+
     document.getElementById('admin-link').addEventListener('click', () => {
       App.showScreen('screen-admin-login');
     });
