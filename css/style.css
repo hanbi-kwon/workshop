@@ -925,8 +925,8 @@ textarea.pixel-input { min-height: 250px; }
   #screen-mini-games.active,
   #screen-mini-play.active { padding: 15px 10px; }
 
-  .retro-title { font-size: 24px; letter-spacing: 2px; text-shadow: 4px 4px 0 var(--indigo-dark), -2px -2px 0 var(--indigo-light); }
-  .retro-title.small { font-size: 16px; }
+  .retro-title { font-size: 22px; letter-spacing: 1px; text-shadow: 2px 2px 0 var(--indigo-dark); }
+  .retro-title.small { font-size: 14px; text-shadow: 2px 2px 0 var(--indigo-dark); }
   .pixel-label { font-size: 18px; }
   .blink { font-size: 18px; }
 
@@ -939,8 +939,14 @@ textarea.pixel-input { min-height: 250px; }
   .pixel-btn-text { font-size: 14px; padding: 10px; }
   .admin-tab { font-size: 12px; padding: 10px 8px; }
   .admin-tab-content { padding: 10px; }
-  .admin-ranking-header { flex-direction: column; gap: 8px; align-items: flex-start; }
-  .stats { font-size: 16px; line-height: 1.8; }
+  .admin-ranking-header { flex-direction: row; gap: 8px; justify-content: space-between; }
+  .admin-ranking-header .pixel-btn-text { font-size: 11px; padding: 6px; }
+  .stats { font-size: 14px; line-height: 1.8; }
+  .admin-header { margin-bottom: 10px; }
+  .lb-row { padding: 12px 10px; gap: 8px; }
+  .lb-rank { font-size: 16px; min-width: 30px; }
+  .lb-name { font-size: 13px; }
+  .lb-coins { font-size: 13px; }
 
   .mode-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
   .mode-btn { font-size: 20px; padding: 30px 15px; }
