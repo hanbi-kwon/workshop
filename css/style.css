@@ -842,6 +842,39 @@ textarea.pixel-input { min-height: 250px; }
 }
 
 /* ── 리더보드 ── */
+/* ── 어드민 탭 ── */
+.admin-tabs {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+.admin-tab {
+  flex: 1;
+  background: var(--surface);
+  border: 3px solid var(--border);
+  border-bottom: none;
+  color: var(--text-dim);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+.admin-tab.active {
+  background: var(--surface2);
+  color: var(--indigo);
+  border-color: var(--indigo);
+  border-bottom: 3px solid var(--surface2);
+}
+.admin-tab:hover { color: var(--text); }
+.admin-tab-content {
+  width: 100%;
+  border: 3px solid var(--border);
+  padding: 25px;
+  min-height: 300px;
+}
+.admin-tab-content.active { border-color: var(--indigo); }
+
 .admin-ranking {
   width: 100%;
   margin-bottom: 20px;

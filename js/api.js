@@ -32,5 +32,8 @@ const Api = {
   },
   getLeaderboard() {
     return apiCall({ action: 'getLeaderboard' });
+  },
+  resetLeaderboard(password) {
+    return apiCall({ action: 'resetLeaderboard', password });
   }
 };

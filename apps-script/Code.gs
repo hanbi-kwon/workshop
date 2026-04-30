@@ -51,8 +51,9 @@ function doPost(e) {
     if (action === 'getLeaderboard')  return getLeaderboard();
 
     if (!checkAdmin(password)) return respond({ ok: false, error: 'ACCESS DENIED' });
-    if (action === 'deleteQuestion') return deleteQuestion(data);
-    if (action === 'updateQuestion') return updateQuestion(data);
+    if (action === 'deleteQuestion')    return deleteQuestion(data);
+    if (action === 'updateQuestion')    return updateQuestion(data);
+    if (action === 'resetLeaderboard')  return resetLeaderboard();
 
     return respond({ ok: false, error: 'Unknown action' });
   } catch (err) {
@@ -186,6 +187,20 @@ function getLeaderboard() {
     .sort((a, b) => b.coins - a.coins);
 
   return respond({ ok: true, leaderboard });
+}
+
+// ── 리더보드: 전체 리셋 (관리자) ────────────────────
+function resetLeaderboard() {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(5000);
+  try {
+    const sheet = getLeaderboardSheet();
+    const rows = sheet.getLastRow();
+    if (rows > 1) sheet.deleteRows(2, rows - 1);
+    return respond({ ok: true });
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 // ── 질문 뽑기 (관리자) ──────────────────────────────

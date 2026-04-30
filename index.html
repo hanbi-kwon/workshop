@@ -45,14 +45,20 @@
         <h1 class="retro-title small">ADMIN PANEL</h1>
         <div id="question-stats" class="stats"></div>
       </div>
-      <div class="admin-ranking">
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="ranking">🏆 RANKING</button>
+        <button class="admin-tab" data-tab="questions">📋 QUESTIONS</button>
+      </div>
+      <div id="tab-ranking" class="admin-tab-content active">
         <div class="admin-ranking-header">
-          <h2 class="retro-title small">🏆 CASINO RANKING</h2>
           <button id="lb-refresh-btn" class="pixel-btn-text">[ REFRESH ]</button>
+          <button id="lb-reset-btn" class="pixel-btn-text" style="color:var(--red)">[ RESET ALL ]</button>
         </div>
         <div id="admin-leaderboard" class="lb-list"></div>
       </div>
-      <div id="question-list" class="question-list"></div>
+      <div id="tab-questions" class="admin-tab-content hidden">
+        <div id="question-list" class="question-list"></div>
+      </div>
       <button id="admin-logout" class="pixel-btn-text">[ LOGOUT ]</button>
     </div>
   </div>

@@ -90,6 +90,27 @@ const App = {
       Admin.loadLeaderboard();
     });
 
+    document.getElementById('lb-reset-btn').addEventListener('click', async () => {
+      if (!confirm('전체 랭킹을 초기화할까요?')) return;
+      await Api.resetLeaderboard(App.adminPassword);
+      Admin.loadLeaderboard();
+    });
+
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.admin-tab-content').forEach(c => {
+          c.classList.remove('active');
+          c.classList.add('hidden');
+        });
+        tab.classList.add('active');
+        const target = document.getElementById('tab-' + tab.dataset.tab);
+        target.classList.remove('hidden');
+        target.classList.add('active');
+        Fx.sfx('click');
+      });
+    });
+
     // 모드 선택
     document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.addEventListener('click', () => {

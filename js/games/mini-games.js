@@ -33,7 +33,6 @@ const MiniGames = {
         <div class="mini-game-grid">${grid}</div>
         <div class="mini-bottom-btns">
           <button id="change-name" class="pixel-btn-text">[ CHANGE NAME ]</button>
-          <button id="coin-reset" class="pixel-btn-text">[ RESET COINS ]</button>
           <button id="mini-back-home" class="pixel-btn-text">[ BACK ]</button>
         </div>
       </div>`;
@@ -49,11 +48,6 @@ const MiniGames = {
     document.getElementById('change-name').addEventListener('click', async () => {
       await Coins.promptName();
       Coins.updateUI();
-    });
-
-    document.getElementById('coin-reset').addEventListener('click', () => {
-      Coins.reset();
-      CasinoFx.sfx('coin');
     });
 
     document.getElementById('mini-back-home').addEventListener('click', () => {
